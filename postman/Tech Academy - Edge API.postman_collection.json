@@ -1,0 +1,91 @@
+{
+	"info": {
+		"_postman_id": "6e6d5b41-f87d-4e71-94b1-1dc17d76273b",
+		"name": "Tech Academy - Edge API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "790650"
+	},
+	"item": [
+		{
+			"name": "ENS API",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var dateIso = new Date().toISOString();",
+							"pm.environment.set('ts',dateIso)",
+							"console.log('ts: ' + pm.environment.get('ts'))",
+							"",
+							"",
+							"//ECID = 27351988693905307226323235726001812087",
+							"pm.environment.set('FPID', \"22dad324-1d34-4ac1-b397-294d292a472f\")"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "x-api-key",
+						"value": "{{clientID}}",
+						"description": "The API key which can be copied from your Experience Platform integration. For more information on how to obtain this value, visit the [getting started tutorial](http://www.adobe.com/go/destination-sdk-getting-started-en).",
+						"type": "string"
+					},
+					{
+						"key": "x-gw-ims-org-id",
+						"value": "{{IMSOrg}}",
+						"description": "The IMS Organization ID which can be copied from your Experience Platform integration. For more information on how to obtain this value, visit the [getting started tutorial](http://www.adobe.com/go/destination-sdk-getting-started-en).",
+						"type": "string"
+					},
+					{
+						"key": "x-sandbox-name",
+						"value": "xxx",
+						"description": "The name of the sandbox in which the operation will take place. See the [sandboxes overview](https://adobe.com/go/sandbox-overview-en) for more information. For more information on how to obtain this value, visit the [getting started tutorial](http://www.adobe.com/go/destination-sdk-getting-started-en)",
+						"type": "string"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"event\": {\n        \"xdm\": {\n            \"web\": {\n                \"webPageDetails\": {\n                    \"name\": \"SecurFInancial-Home\",\n                    \"pageViews\": {\n                        \"value\": 1\n                    }\n                },\n                \"webReferrer\": {\n                    \"URL\": \"\"\n                }\n            },\n            \"_id\": \"405867946565226200000\",\n            \"eventType\": \"web.webpagedetails.pageViews\",\n            \"identityMap\": {\n                \"FPID\": [\n                    {\n                        \"id\": \"b348e353-7e60-4a67-bbf9-1bcea9376131\",\n                        \"primary\": true\n                    }\n                ]\n            },\n            \"timestamp\": \"2022-10-21T07:18:13.022Z\"\n        }\n    },\n    \"query\": {\n        \"personalization\": {\n            \"schemas\": [\n                \"https://ns.adobe.com/personalization/html-content-item\"\n            ],\n            \"decisionScopes\": [\n                \"xxx\", \"xxx\"\n            ]\n        }\n    }\n}"
+				},
+				"url": {
+					"raw": "https://server.adobedc.net/v2/interact?datastreamId=xxx",
+					"protocol": "https",
+					"host": [
+						"server",
+						"adobedc",
+						"net"
+					],
+					"path": [
+						"v2",
+						"interact"
+					],
+					"query": [
+						{
+							"key": "datastreamId",
+							"value": "xxx"
+						}
+					]
+				},
+				"description": "You can create a new destination server configuration by making a POST request to the `/destination-servers` endpoint."
+			},
+			"response": []
+		}
+	]
+}
